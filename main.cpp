@@ -21,16 +21,21 @@ volatile uint8_t flips = 0;
 volatile uint16_t secSleep = 0;
 	
 
-void inline setup()
+inline void setup()
 {
 	DDRB = 0x00;
 	PORTB = 0x00;
-	DDRB &= ~(1 << PINB1);											//I/O inputs
+	DDRB &= ~(1 << PINB1) && ~(1 << PINB2);											//I/O inputs
 	PORTB |= 1 << PINB1;											//PULL UP RESISTOR for input
+	
 	TCCR0A |= (1 << COM0A1) | (1 << WGM01) | (1 << WGM00);			//PWM
 	TCCR0B |= 1 << CS02;											//PWM
 	TIMSK0 |= 1 << TOIE0;											//Timer0 overflow interrupt
 	MCUCR |= (1 << SM1) | (1 << SE);								//Sleep mode selection
+	
+	WDTCR |= 1 << WDCE;												//Watchdog settings
+	WDTCR |= (1 << WDP3) || (1 << WDP0);
+	WDTCR |= (1 << WDTIE);
 }
 
 bool sensorFlipped()												//Gets a new sensor sample and checks if it is flipped through rolling mean
@@ -64,7 +69,7 @@ bool sensorFlipped()												//Gets a new sensor sample and checks if it is f
 		return false;
 }
 
-inline void sleep()
+void sleep()
 {
 	secSleep = 0;
 	GIMSK |= 1 << INT0;			//Enable external interrupt for awakening
@@ -72,24 +77,30 @@ inline void sleep()
 	GIMSK &= ~(1 << INT0);		//Disable external interrupt after awakening
 }
 
-inline void rampUP()
+void rampUP()
 {
+	WDTCR &= ~(1 << WDTIE);
+	cli();
 	DDRB |= 1 << PINB0;
 	while (OCR0A < 0xff)
 	{
 		OCR0A++;
 		_delay_ms(16);
 	}
+	sei();
 }
 
-inline void rampDOWN()
+void rampDOWN()
 {
+	cli();
 	while (OCR0A > 0x00)
 	{
 		OCR0A--;
 		_delay_ms(16);
 	}
 	DDRB &= ~(1 << PINB0);
+	WDTCR |= (1 << WDTIE);
+	sei();
 	sleep();
 }
 
@@ -98,6 +109,9 @@ int main(void)
 {
 	setup();
 	sei();
+// 	DDRB |= 1 << PINB0;
+// 	OCR0A = 100;
+// 	PORTB |= 1 << PINB0;
     while (1)
     {
 	    _delay_ms(5);
@@ -108,7 +122,7 @@ int main(void)
 			secSleep = 0;
 			OCR0A ? rampDOWN() : rampUP();
 		}
-		if (secSleep > 120 || (secSleep > 10 && !OCR0A))
+		if (secSleep > 120)
 		{
 			rampDOWN();
 		}
@@ -127,6 +141,25 @@ ISR (TIM0_OVF_vect) //Timer 0 overflow interrupt used for all the timing needs
 	}
 }
 
+ISR (WDT_vect) //External interrupt used to wake from sleep
+{
+	static uint8_t done = 10;
+	if (PINB & PINB2)
+	{
+		if (done < 10) done++;
+		sleep();
+		return;
+	}
+	else if (done >= 10)
+	{
+		done = 0;
+		rampUP();
+		secSleep = 110;
+	}
+}
+
+
 ISR (INT0_vect) //External interrupt used to wake from sleep
 {
 }
+
