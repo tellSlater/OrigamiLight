@@ -17,7 +17,8 @@ main.d main.o: .././main.cpp \
  g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdlib.h \
  g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stddef.h \
  g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
- g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sleep.h
+ g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sleep.h \
+ g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\wdt.h
 
 g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
 
@@ -56,3 +57,5 @@ g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\
 g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h:
 
 g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sleep.h:
+
+g:\program\ files\atmelstudio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\wdt.h:
