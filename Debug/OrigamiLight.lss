@@ -3,45 +3,45 @@ OrigamiLight.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000002e2  00000000  00000000  00000094  2**1
+  0 .text         000001f0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000004  00800060  000002e2  00000376  2**0
+  1 .data         00000002  00800060  000001f0  00000284  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000006  00800064  00800064  0000037a  2**0
+  2 .bss          00000003  00800062  00800062  00000286  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000037a  2**0
+  3 .comment      00000030  00000000  00000000  00000286  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000003ac  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002b8  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000060  00000000  00000000  000003e8  2**0
+  5 .debug_aranges 00000058  00000000  00000000  000002f4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000065b  00000000  00000000  00000448  2**0
+  6 .debug_info   000005b7  00000000  00000000  0000034c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000467  00000000  00000000  00000aa3  2**0
+  7 .debug_abbrev 00000430  00000000  00000000  00000903  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000048e  00000000  00000000  00000f0a  2**0
+  8 .debug_line   000003bd  00000000  00000000  00000d33  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000110  00000000  00000000  00001398  2**2
+  9 .debug_frame  000000cc  00000000  00000000  000010f0  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003a7  00000000  00000000  000014a8  2**0
+ 10 .debug_str    00000388  00000000  00000000  000011bc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000027a  00000000  00000000  0000184f  2**0
+ 11 .debug_loc    0000015c  00000000  00000000  00001544  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000068  00000000  00000000  00001ac9  2**0
+ 12 .debug_ranges 00000048  00000000  00000000  000016a0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	09 c0       	rjmp	.+18     	; 0x14 <__ctors_end>
-   2:	5a c1       	rjmp	.+692    	; 0x2b8 <__vector_1>
+   2:	e1 c0       	rjmp	.+450    	; 0x1c6 <__vector_1>
    4:	20 c0       	rjmp	.+64     	; 0x46 <__bad_interrupt>
-   6:	e9 c0       	rjmp	.+466    	; 0x1da <__vector_3>
+   6:	88 c0       	rjmp	.+272    	; 0x118 <__vector_3>
    8:	1e c0       	rjmp	.+60     	; 0x46 <__bad_interrupt>
    a:	1d c0       	rjmp	.+58     	; 0x46 <__bad_interrupt>
    c:	1c c0       	rjmp	.+56     	; 0x46 <__bad_interrupt>
    e:	1b c0       	rjmp	.+54     	; 0x46 <__bad_interrupt>
-  10:	0e c1       	rjmp	.+540    	; 0x22e <__vector_8>
+  10:	a4 c0       	rjmp	.+328    	; 0x15a <__vector_8>
   12:	19 c0       	rjmp	.+50     	; 0x46 <__bad_interrupt>
 
 00000014 <__ctors_end>:
@@ -54,18 +54,18 @@ Disassembly of section .text:
   1c:	10 e0       	ldi	r17, 0x00	; 0
   1e:	a0 e6       	ldi	r26, 0x60	; 96
   20:	b0 e0       	ldi	r27, 0x00	; 0
-  22:	e2 ee       	ldi	r30, 0xE2	; 226
-  24:	f2 e0       	ldi	r31, 0x02	; 2
+  22:	e0 ef       	ldi	r30, 0xF0	; 240
+  24:	f1 e0       	ldi	r31, 0x01	; 1
   26:	02 c0       	rjmp	.+4      	; 0x2c <__do_copy_data+0x10>
   28:	05 90       	lpm	r0, Z+
   2a:	0d 92       	st	X+, r0
-  2c:	a4 36       	cpi	r26, 0x64	; 100
+  2c:	a2 36       	cpi	r26, 0x62	; 98
   2e:	b1 07       	cpc	r27, r17
   30:	d9 f7       	brne	.-10     	; 0x28 <__do_copy_data+0xc>
 
 00000032 <__do_clear_bss>:
   32:	20 e0       	ldi	r18, 0x00	; 0
-  34:	a4 e6       	ldi	r26, 0x64	; 100
+  34:	a2 e6       	ldi	r26, 0x62	; 98
   36:	b0 e0       	ldi	r27, 0x00	; 0
   38:	01 c0       	rjmp	.+2      	; 0x3c <.do_clear_bss_start>
 
@@ -73,18 +73,18 @@ Disassembly of section .text:
   3a:	1d 92       	st	X+, r1
 
 0000003c <.do_clear_bss_start>:
-  3c:	aa 36       	cpi	r26, 0x6A	; 106
+  3c:	a5 36       	cpi	r26, 0x65	; 101
   3e:	b2 07       	cpc	r27, r18
   40:	e1 f7       	brne	.-8      	; 0x3a <.do_clear_bss_loop>
-  42:	9a d0       	rcall	.+308    	; 0x178 <main>
-  44:	4c c1       	rjmp	.+664    	; 0x2de <_exit>
+  42:	4d d0       	rcall	.+154    	; 0xde <main>
+  44:	d3 c0       	rjmp	.+422    	; 0x1ec <_exit>
 
 00000046 <__bad_interrupt>:
   46:	dc cf       	rjmp	.-72     	; 0x0 <__vectors>
 
 00000048 <_Z5setupv>:
+
 volatile uint16_t secSleep = 0;
-volatile bool wdtSleep = true;
 
 void inline setup()
 {
@@ -108,16 +108,17 @@ void inline setup()
   58:	83 b7       	in	r24, 0x33	; 51
   5a:	84 60       	ori	r24, 0x04	; 4
   5c:	83 bf       	out	0x33, r24	; 51
-	TIMSK0 |= 1 << TOIE0;											//Timer0 overflow interrupt
-  5e:	89 b7       	in	r24, 0x39	; 57
-  60:	82 60       	ori	r24, 0x02	; 2
-  62:	89 bf       	out	0x39, r24	; 57
-	MCUCR |= (1 << SM1) | (1 << SE);								//Sleep mode selection
-  64:	85 b7       	in	r24, 0x35	; 53
-  66:	80 63       	ori	r24, 0x30	; 48
-  68:	85 bf       	out	0x35, r24	; 53
 	OCR0A = 0x00;
-  6a:	16 be       	out	0x36, r1	; 54
+  5e:	16 be       	out	0x36, r1	; 54
+	TIMSK0 |= 1 << TOIE0;											//Timer0 overflow interrupt
+  60:	89 b7       	in	r24, 0x39	; 57
+  62:	82 60       	ori	r24, 0x02	; 2
+  64:	89 bf       	out	0x39, r24	; 57
+	MCUCR |= (1 << SM1) | (1 << SE);								//Sleep mode selection
+  66:	85 b7       	in	r24, 0x35	; 53
+  68:	80 63       	ori	r24, 0x30	; 48
+  6a:	85 bf       	out	0x35, r24	; 53
+	//MCUCR |= (1 << ISC00);											//INT0 interrupt type
 	
 	MCUSR = 0;														//Watchdog settings
   6c:	14 be       	out	0x34, r1	; 52
@@ -132,465 +133,325 @@ void inline setup()
   76:	78 94       	sei
   78:	08 95       	ret
 
-0000007a <_Z13sensorFlippedv>:
-	static uint8_t sensorIns = 0x00;
-	static uint8_t i = 0;
-	static bool sensorPos = 1;
-	uint8_t sum = 0;
-	
-	if (PINB & (1 << PINB1))
-  7a:	b1 9b       	sbis	0x16, 1	; 22
-  7c:	0f c0       	rjmp	.+30     	; 0x9c <_Z13sensorFlippedv+0x22>
-	{
-		sensorIns |= 1 << i;
-  7e:	81 e0       	ldi	r24, 0x01	; 1
-  80:	90 e0       	ldi	r25, 0x00	; 0
-  82:	00 90 66 00 	lds	r0, 0x0066	; 0x800066 <_ZZ13sensorFlippedvE1i>
-  86:	02 c0       	rjmp	.+4      	; 0x8c <_Z13sensorFlippedv+0x12>
-  88:	88 0f       	add	r24, r24
-  8a:	99 1f       	adc	r25, r25
-  8c:	0a 94       	dec	r0
-  8e:	e2 f7       	brpl	.-8      	; 0x88 <_Z13sensorFlippedv+0xe>
-  90:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <_ZZ13sensorFlippedvE9sensorIns>
-  94:	89 2b       	or	r24, r25
-  96:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <_ZZ13sensorFlippedvE9sensorIns>
-  9a:	0f c0       	rjmp	.+30     	; 0xba <__stack+0x1b>
-	}
-	else
-	{
-		sensorIns &= ~(1 << i);
-  9c:	81 e0       	ldi	r24, 0x01	; 1
-  9e:	90 e0       	ldi	r25, 0x00	; 0
-  a0:	00 90 66 00 	lds	r0, 0x0066	; 0x800066 <_ZZ13sensorFlippedvE1i>
-  a4:	02 c0       	rjmp	.+4      	; 0xaa <__stack+0xb>
-  a6:	88 0f       	add	r24, r24
-  a8:	99 1f       	adc	r25, r25
-  aa:	0a 94       	dec	r0
-  ac:	e2 f7       	brpl	.-8      	; 0xa6 <__stack+0x7>
-  ae:	80 95       	com	r24
-  b0:	90 91 65 00 	lds	r25, 0x0065	; 0x800065 <_ZZ13sensorFlippedvE9sensorIns>
-  b4:	89 23       	and	r24, r25
-  b6:	80 93 65 00 	sts	0x0065, r24	; 0x800065 <_ZZ13sensorFlippedvE9sensorIns>
-	}
-	i < 7? i++ : i=0;
-  ba:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <_ZZ13sensorFlippedvE1i>
-  be:	87 30       	cpi	r24, 0x07	; 7
-  c0:	20 f4       	brcc	.+8      	; 0xca <__stack+0x2b>
-  c2:	8f 5f       	subi	r24, 0xFF	; 255
-  c4:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <_ZZ13sensorFlippedvE1i>
-  c8:	02 c0       	rjmp	.+4      	; 0xce <__stack+0x2f>
-  ca:	10 92 66 00 	sts	0x0066, r1	; 0x800066 <_ZZ13sensorFlippedvE1i>
-	
-	for (uint8_t j=0; j<8; ++j)
-	{
-		sum += (sensorIns >> j) & 0x01;
-  ce:	60 91 65 00 	lds	r22, 0x0065	; 0x800065 <_ZZ13sensorFlippedvE9sensorIns>
-  d2:	70 e0       	ldi	r23, 0x00	; 0
-  d4:	80 e0       	ldi	r24, 0x00	; 0
-  d6:	90 e0       	ldi	r25, 0x00	; 0
-bool sensorFlipped()												//Gets a new sensor sample and checks if it is flipped through rolling mean
-{
-	static uint8_t sensorIns = 0x00;
-	static uint8_t i = 0;
-	static bool sensorPos = 1;
-	uint8_t sum = 0;
-  d8:	40 e0       	ldi	r20, 0x00	; 0
-	}
-	i < 7? i++ : i=0;
-	
-	for (uint8_t j=0; j<8; ++j)
-	{
-		sum += (sensorIns >> j) & 0x01;
-  da:	9b 01       	movw	r18, r22
-  dc:	08 2e       	mov	r0, r24
-  de:	02 c0       	rjmp	.+4      	; 0xe4 <__stack+0x45>
-  e0:	35 95       	asr	r19
-  e2:	27 95       	ror	r18
-  e4:	0a 94       	dec	r0
-  e6:	e2 f7       	brpl	.-8      	; 0xe0 <__stack+0x41>
-  e8:	21 70       	andi	r18, 0x01	; 1
-  ea:	42 0f       	add	r20, r18
-  ec:	01 96       	adiw	r24, 0x01	; 1
-	{
-		sensorIns &= ~(1 << i);
-	}
-	i < 7? i++ : i=0;
-	
-	for (uint8_t j=0; j<8; ++j)
-  ee:	88 30       	cpi	r24, 0x08	; 8
-  f0:	91 05       	cpc	r25, r1
-  f2:	99 f7       	brne	.-26     	; 0xda <__stack+0x3b>
-	{
-		sum += (sensorIns >> j) & 0x01;
-	}
-	
-	if ((sensorPos && sum<3) || (!sensorPos && sum>6))
-  f4:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <_ZZ13sensorFlippedvE9sensorPos>
-  f8:	88 23       	and	r24, r24
-  fa:	21 f0       	breq	.+8      	; 0x104 <__stack+0x65>
-  fc:	43 30       	cpi	r20, 0x03	; 3
-  fe:	20 f0       	brcs	.+8      	; 0x108 <__stack+0x69>
-	{
-		sensorPos = !sensorPos;
-		return true;
-	}
-	else
-		return false;
- 100:	80 e0       	ldi	r24, 0x00	; 0
- 102:	08 95       	ret
-	for (uint8_t j=0; j<8; ++j)
-	{
-		sum += (sensorIns >> j) & 0x01;
-	}
-	
-	if ((sensorPos && sum<3) || (!sensorPos && sum>6))
- 104:	47 30       	cpi	r20, 0x07	; 7
- 106:	28 f0       	brcs	.+10     	; 0x112 <__stack+0x73>
-	{
-		sensorPos = !sensorPos;
- 108:	91 e0       	ldi	r25, 0x01	; 1
- 10a:	89 27       	eor	r24, r25
- 10c:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <_ZZ13sensorFlippedvE9sensorPos>
-		return true;
- 110:	81 e0       	ldi	r24, 0x01	; 1
-	}
-	else
-		return false;
+0000007a <_Z5sleepv>:
 }
- 112:	08 95       	ret
-
-00000114 <_Z5sleepv>:
 
 void sleep()
 {
 	secSleep = 0;
- 114:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <secSleep+0x1>
- 118:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <secSleep>
+  7a:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <secSleep+0x1>
+  7e:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <secSleep>
 	GIMSK |= 1 << INT0;			//Enable external interrupt for awakening
- 11c:	8b b7       	in	r24, 0x3b	; 59
- 11e:	80 64       	ori	r24, 0x40	; 64
- 120:	8b bf       	out	0x3b, r24	; 59
+  82:	8b b7       	in	r24, 0x3b	; 59
+  84:	80 64       	ori	r24, 0x40	; 64
+  86:	8b bf       	out	0x3b, r24	; 59
 	sleep_mode();
- 122:	85 b7       	in	r24, 0x35	; 53
- 124:	80 62       	ori	r24, 0x20	; 32
- 126:	85 bf       	out	0x35, r24	; 53
- 128:	88 95       	sleep
- 12a:	85 b7       	in	r24, 0x35	; 53
- 12c:	8f 7d       	andi	r24, 0xDF	; 223
- 12e:	85 bf       	out	0x35, r24	; 53
- 130:	08 95       	ret
+  88:	85 b7       	in	r24, 0x35	; 53
+  8a:	80 62       	ori	r24, 0x20	; 32
+  8c:	85 bf       	out	0x35, r24	; 53
+  8e:	88 95       	sleep
+  90:	85 b7       	in	r24, 0x35	; 53
+  92:	8f 7d       	andi	r24, 0xDF	; 223
+  94:	85 bf       	out	0x35, r24	; 53
+  96:	08 95       	ret
 
-00000132 <_Z6rampUPv>:
+00000098 <_Z6rampUPv>:
 }
 
 void rampUP()
 {
 	DDRB |= 1 << PINB0;
- 132:	b8 9a       	sbi	0x17, 0	; 23
+  98:	b8 9a       	sbi	0x17, 0	; 23
 	while (OCR0A < 0xff)
- 134:	86 b7       	in	r24, 0x36	; 54
- 136:	8f 3f       	cpi	r24, 0xFF	; 255
- 138:	61 f0       	breq	.+24     	; 0x152 <_Z6rampUPv+0x20>
+  9a:	86 b7       	in	r24, 0x36	; 54
+  9c:	8f 3f       	cpi	r24, 0xFF	; 255
+  9e:	61 f0       	breq	.+24     	; 0xb8 <__stack+0x19>
 	{
 		OCR0A++;
- 13a:	86 b7       	in	r24, 0x36	; 54
- 13c:	8f 5f       	subi	r24, 0xFF	; 255
- 13e:	86 bf       	out	0x36, r24	; 54
+  a0:	86 b7       	in	r24, 0x36	; 54
+  a2:	8f 5f       	subi	r24, 0xFF	; 255
+  a4:	86 bf       	out	0x36, r24	; 54
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 140:	8f ef       	ldi	r24, 0xFF	; 255
- 142:	9c e7       	ldi	r25, 0x7C	; 124
- 144:	01 97       	sbiw	r24, 0x01	; 1
- 146:	f1 f7       	brne	.-4      	; 0x144 <_Z6rampUPv+0x12>
- 148:	00 c0       	rjmp	.+0      	; 0x14a <_Z6rampUPv+0x18>
- 14a:	00 00       	nop
+  a6:	8f ef       	ldi	r24, 0xFF	; 255
+  a8:	9c e7       	ldi	r25, 0x7C	; 124
+  aa:	01 97       	sbiw	r24, 0x01	; 1
+  ac:	f1 f7       	brne	.-4      	; 0xaa <__stack+0xb>
+  ae:	00 c0       	rjmp	.+0      	; 0xb0 <__stack+0x11>
+  b0:	00 00       	nop
 }
 
 void rampUP()
 {
 	DDRB |= 1 << PINB0;
 	while (OCR0A < 0xff)
- 14c:	86 b7       	in	r24, 0x36	; 54
- 14e:	8f 3f       	cpi	r24, 0xFF	; 255
- 150:	a1 f7       	brne	.-24     	; 0x13a <_Z6rampUPv+0x8>
- 152:	08 95       	ret
+  b2:	86 b7       	in	r24, 0x36	; 54
+  b4:	8f 3f       	cpi	r24, 0xFF	; 255
+  b6:	a1 f7       	brne	.-24     	; 0xa0 <__stack+0x1>
+  b8:	08 95       	ret
 
-00000154 <_Z8rampDOWNv>:
+000000ba <_Z8rampDOWNv>:
 	}
 }
 
 void rampDOWN()
 {
 	while (OCR0A > 0x00)
- 154:	86 b7       	in	r24, 0x36	; 54
- 156:	88 23       	and	r24, r24
- 158:	61 f0       	breq	.+24     	; 0x172 <_Z8rampDOWNv+0x1e>
+  ba:	86 b7       	in	r24, 0x36	; 54
+  bc:	88 23       	and	r24, r24
+  be:	61 f0       	breq	.+24     	; 0xd8 <_Z8rampDOWNv+0x1e>
 	{
 		OCR0A--;
- 15a:	86 b7       	in	r24, 0x36	; 54
- 15c:	81 50       	subi	r24, 0x01	; 1
- 15e:	86 bf       	out	0x36, r24	; 54
- 160:	8f ef       	ldi	r24, 0xFF	; 255
- 162:	9c e7       	ldi	r25, 0x7C	; 124
- 164:	01 97       	sbiw	r24, 0x01	; 1
- 166:	f1 f7       	brne	.-4      	; 0x164 <_Z8rampDOWNv+0x10>
- 168:	00 c0       	rjmp	.+0      	; 0x16a <_Z8rampDOWNv+0x16>
- 16a:	00 00       	nop
+  c0:	86 b7       	in	r24, 0x36	; 54
+  c2:	81 50       	subi	r24, 0x01	; 1
+  c4:	86 bf       	out	0x36, r24	; 54
+  c6:	8f ef       	ldi	r24, 0xFF	; 255
+  c8:	9c e7       	ldi	r25, 0x7C	; 124
+  ca:	01 97       	sbiw	r24, 0x01	; 1
+  cc:	f1 f7       	brne	.-4      	; 0xca <_Z8rampDOWNv+0x10>
+  ce:	00 c0       	rjmp	.+0      	; 0xd0 <_Z8rampDOWNv+0x16>
+  d0:	00 00       	nop
 	}
 }
 
 void rampDOWN()
 {
 	while (OCR0A > 0x00)
- 16c:	86 b7       	in	r24, 0x36	; 54
- 16e:	81 11       	cpse	r24, r1
- 170:	f4 cf       	rjmp	.-24     	; 0x15a <_Z8rampDOWNv+0x6>
+  d2:	86 b7       	in	r24, 0x36	; 54
+  d4:	81 11       	cpse	r24, r1
+  d6:	f4 cf       	rjmp	.-24     	; 0xc0 <_Z8rampDOWNv+0x6>
 	{
 		OCR0A--;
 		_delay_ms(16);
 	}
 	DDRB &= ~(1 << PINB0);
- 172:	b8 98       	cbi	0x17, 0	; 23
+  d8:	b8 98       	cbi	0x17, 0	; 23
 	sleep();
- 174:	cf df       	rcall	.-98     	; 0x114 <_Z5sleepv>
- 176:	08 95       	ret
+  da:	cf df       	rcall	.-98     	; 0x7a <_Z5sleepv>
+  dc:	08 95       	ret
 
-00000178 <main>:
-
+000000de <main>:
+	GIMSK &= ~(1 << INT0);		//Disable external interrupt INT0
+}
 
 int main(void)
 {
-	
 	setup();
- 178:	67 df       	rcall	.-306    	; 0x48 <_Z5setupv>
+  de:	b4 df       	rcall	.-152    	; 0x48 <_Z5setupv>
 	sei();
- 17a:	78 94       	sei
- 17c:	8f e6       	ldi	r24, 0x6F	; 111
- 17e:	97 e1       	ldi	r25, 0x17	; 23
- 180:	01 97       	sbiw	r24, 0x01	; 1
- 182:	f1 f7       	brne	.-4      	; 0x180 <main+0x8>
- 184:	00 c0       	rjmp	.+0      	; 0x186 <main+0xe>
- 186:	00 00       	nop
+  e0:	78 94       	sei
+	sleep();
+  e2:	cb df       	rcall	.-106    	; 0x7a <_Z5sleepv>
     while (1)
     {
-	    _delay_ms(3);
-		flips += sensorFlipped();
- 188:	78 df       	rcall	.-272    	; 0x7a <_Z13sensorFlippedv>
- 18a:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <flips>
- 18e:	89 0f       	add	r24, r25
- 190:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <flips>
-		if (flips > 6)
- 194:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <flips>
- 198:	87 30       	cpi	r24, 0x07	; 7
- 19a:	60 f0       	brcs	.+24     	; 0x1b4 <main+0x3c>
+		if (secSleep <= 60) rampUP();
+  e4:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <secSleep>
+  e8:	90 91 64 00 	lds	r25, 0x0064	; 0x800064 <secSleep+0x1>
+  ec:	cd 97       	sbiw	r24, 0x3d	; 61
+  ee:	08 f4       	brcc	.+2      	; 0xf2 <main+0x14>
+  f0:	d3 df       	rcall	.-90     	; 0x98 <_Z6rampUPv>
+		if (secSleep > 5)
+  f2:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <secSleep>
+  f6:	90 91 64 00 	lds	r25, 0x0064	; 0x800064 <secSleep+0x1>
+  fa:	06 97       	sbiw	r24, 0x06	; 6
+  fc:	20 f0       	brcs	.+8      	; 0x106 <main+0x28>
+	sleep();
+}
+
+inline void seINT0()
+{
+	GIFR = 0;
+  fe:	1a be       	out	0x3a, r1	; 58
+	GIMSK |= 1 << INT0;			//Enable external interrupt INT0 to look for movement of tilt sensor
+ 100:	8b b7       	in	r24, 0x3b	; 59
+ 102:	80 64       	ori	r24, 0x40	; 64
+ 104:	8b bf       	out	0x3b, r24	; 59
+		if (secSleep <= 60) rampUP();
+		if (secSleep > 5)
 		{
-			flips = 0;
- 19c:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <flips>
-			secSleep = 0;
- 1a0:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <secSleep+0x1>
- 1a4:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <secSleep>
-			OCR0A ? rampDOWN() : rampUP();
- 1a8:	86 b7       	in	r24, 0x36	; 54
- 1aa:	88 23       	and	r24, r24
- 1ac:	11 f0       	breq	.+4      	; 0x1b2 <main+0x3a>
- 1ae:	d2 df       	rcall	.-92     	; 0x154 <_Z8rampDOWNv>
- 1b0:	01 c0       	rjmp	.+2      	; 0x1b4 <main+0x3c>
- 1b2:	bf df       	rcall	.-130    	; 0x132 <_Z6rampUPv>
+			seINT0();
 		}
-		if (secSleep > 120)
- 1b4:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <secSleep>
- 1b8:	90 91 68 00 	lds	r25, 0x0068	; 0x800068 <secSleep+0x1>
- 1bc:	89 37       	cpi	r24, 0x79	; 121
- 1be:	91 05       	cpc	r25, r1
- 1c0:	08 f0       	brcs	.+2      	; 0x1c4 <main+0x4c>
+		if (secSleep > 60)
+ 106:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <secSleep>
+ 10a:	90 91 64 00 	lds	r25, 0x0064	; 0x800064 <secSleep+0x1>
+ 10e:	cd 97       	sbiw	r24, 0x3d	; 61
+ 110:	48 f3       	brcs	.-46     	; 0xe4 <main+0x6>
 		{
 			rampDOWN();
- 1c2:	c8 df       	rcall	.-112    	; 0x154 <_Z8rampDOWNv>
-		}
-		if (wdtSleep && (!OCR0A))
- 1c4:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <wdtSleep>
- 1c8:	88 23       	and	r24, r24
- 1ca:	c1 f2       	breq	.-80     	; 0x17c <main+0x4>
- 1cc:	86 b7       	in	r24, 0x36	; 54
- 1ce:	81 11       	cpse	r24, r1
- 1d0:	d5 cf       	rjmp	.-86     	; 0x17c <main+0x4>
-		{
-			wdtSleep = false;
- 1d2:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <wdtSleep>
+ 112:	d3 df       	rcall	.-90     	; 0xba <_Z8rampDOWNv>
 			sleep();
- 1d6:	9e df       	rcall	.-196    	; 0x114 <_Z5sleepv>
- 1d8:	d1 cf       	rjmp	.-94     	; 0x17c <main+0x4>
+ 114:	b2 df       	rcall	.-156    	; 0x7a <_Z5sleepv>
+ 116:	e6 cf       	rjmp	.-52     	; 0xe4 <main+0x6>
 
-000001da <__vector_3>:
+00000118 <__vector_3>:
 		}
     }
 }
 
 ISR (TIM0_OVF_vect) //Timer 0 overflow interrupt used for all the timing needs
 {
- 1da:	1f 92       	push	r1
- 1dc:	0f 92       	push	r0
- 1de:	0f b6       	in	r0, 0x3f	; 63
- 1e0:	0f 92       	push	r0
- 1e2:	11 24       	eor	r1, r1
- 1e4:	8f 93       	push	r24
- 1e6:	9f 93       	push	r25
-	static uint8_t smallTimer = 0;
+ 118:	1f 92       	push	r1
+ 11a:	0f 92       	push	r0
+ 11c:	0f b6       	in	r0, 0x3f	; 63
+ 11e:	0f 92       	push	r0
+ 120:	11 24       	eor	r1, r1
+ 122:	8f 93       	push	r24
+ 124:	9f 93       	push	r25
+	static uint8_t smallTimer = 0; 
 	smallTimer++;
- 1e8:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <__data_end>
- 1ec:	8f 5f       	subi	r24, 0xFF	; 255
-	if (smallTimer > 122)
- 1ee:	8b 37       	cpi	r24, 0x7B	; 123
- 1f0:	18 f4       	brcc	.+6      	; 0x1f8 <__vector_3+0x1e>
+ 126:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__data_end>
+ 12a:	8f 5f       	subi	r24, 0xFF	; 255
+	if (smallTimer > 122)	//This if is entered once every second
+ 12c:	8b 37       	cpi	r24, 0x7B	; 123
+ 12e:	18 f4       	brcc	.+6      	; 0x136 <__vector_3+0x1e>
 }
 
 ISR (TIM0_OVF_vect) //Timer 0 overflow interrupt used for all the timing needs
 {
-	static uint8_t smallTimer = 0;
+	static uint8_t smallTimer = 0; 
 	smallTimer++;
- 1f2:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <__data_end>
- 1f6:	14 c0       	rjmp	.+40     	; 0x220 <__vector_3+0x46>
-	if (smallTimer > 122)
+ 130:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <__data_end>
+ 134:	0b c0       	rjmp	.+22     	; 0x14c <__vector_3+0x34>
+	if (smallTimer > 122)	//This if is entered once every second
 	{
 		smallTimer = 0;
- 1f8:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <__data_end>
+ 136:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <__data_end>
 		secSleep++;
- 1fc:	80 91 67 00 	lds	r24, 0x0067	; 0x800067 <secSleep>
- 200:	90 91 68 00 	lds	r25, 0x0068	; 0x800068 <secSleep+0x1>
- 204:	01 96       	adiw	r24, 0x01	; 1
- 206:	90 93 68 00 	sts	0x0068, r25	; 0x800068 <secSleep+0x1>
- 20a:	80 93 67 00 	sts	0x0067, r24	; 0x800067 <secSleep>
+ 13a:	80 91 63 00 	lds	r24, 0x0063	; 0x800063 <secSleep>
+ 13e:	90 91 64 00 	lds	r25, 0x0064	; 0x800064 <secSleep+0x1>
+ 142:	01 96       	adiw	r24, 0x01	; 1
+ 144:	90 93 64 00 	sts	0x0064, r25	; 0x800064 <secSleep+0x1>
+ 148:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <secSleep>
 		//DDRB ^= 1 << PINB0; //Debugging
-		if (flips > 0) flips --;
- 20e:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <flips>
- 212:	88 23       	and	r24, r24
- 214:	29 f0       	breq	.+10     	; 0x220 <__vector_3+0x46>
- 216:	80 91 69 00 	lds	r24, 0x0069	; 0x800069 <flips>
- 21a:	81 50       	subi	r24, 0x01	; 1
- 21c:	80 93 69 00 	sts	0x0069, r24	; 0x800069 <flips>
 	}
 }
- 220:	9f 91       	pop	r25
- 222:	8f 91       	pop	r24
- 224:	0f 90       	pop	r0
- 226:	0f be       	out	0x3f, r0	; 63
- 228:	0f 90       	pop	r0
- 22a:	1f 90       	pop	r1
- 22c:	18 95       	reti
+ 14c:	9f 91       	pop	r25
+ 14e:	8f 91       	pop	r24
+ 150:	0f 90       	pop	r0
+ 152:	0f be       	out	0x3f, r0	; 63
+ 154:	0f 90       	pop	r0
+ 156:	1f 90       	pop	r1
+ 158:	18 95       	reti
 
-0000022e <__vector_8>:
+0000015a <__vector_8>:
 
 ISR (WDT_vect) //WDT interrupt to wake from sleep and check brightness once every 8sec
 {
- 22e:	1f 92       	push	r1
- 230:	0f 92       	push	r0
- 232:	0f b6       	in	r0, 0x3f	; 63
- 234:	0f 92       	push	r0
- 236:	11 24       	eor	r1, r1
- 238:	2f 93       	push	r18
- 23a:	3f 93       	push	r19
- 23c:	4f 93       	push	r20
- 23e:	5f 93       	push	r21
- 240:	6f 93       	push	r22
- 242:	7f 93       	push	r23
- 244:	8f 93       	push	r24
- 246:	9f 93       	push	r25
- 248:	af 93       	push	r26
- 24a:	bf 93       	push	r27
- 24c:	ef 93       	push	r30
- 24e:	ff 93       	push	r31
-	static uint8_t done = 38;
+ 15a:	1f 92       	push	r1
+ 15c:	0f 92       	push	r0
+ 15e:	0f b6       	in	r0, 0x3f	; 63
+ 160:	0f 92       	push	r0
+ 162:	11 24       	eor	r1, r1
+ 164:	8f 93       	push	r24
+ 166:	9f 93       	push	r25
+	volatile static uint8_t lightTimes = 4; //How many times light has been detected
+	
 	WDTCR |= (1<<WDTIE);
- 250:	81 b5       	in	r24, 0x21	; 33
- 252:	80 64       	ori	r24, 0x40	; 64
- 254:	81 bd       	out	0x21, r24	; 33
-	wdtSleep = true;
- 256:	81 e0       	ldi	r24, 0x01	; 1
- 258:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <wdtSleep>
+ 168:	81 b5       	in	r24, 0x21	; 33
+ 16a:	80 64       	ori	r24, 0x40	; 64
+ 16c:	81 bd       	out	0x21, r24	; 33
+	
+	if (!OCR0A) secSleep = 100;
+ 16e:	86 b7       	in	r24, 0x36	; 54
+ 170:	81 11       	cpse	r24, r1
+ 172:	22 c0       	rjmp	.+68     	; 0x1b8 <__vector_8+0x5e>
+ 174:	84 e6       	ldi	r24, 0x64	; 100
+ 176:	90 e0       	ldi	r25, 0x00	; 0
+ 178:	90 93 64 00 	sts	0x0064, r25	; 0x800064 <secSleep+0x1>
+ 17c:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <secSleep>
+	else return;
+	
 	if (PINB & (1 << PINB2))
- 25c:	b2 9b       	sbis	0x16, 2	; 22
- 25e:	08 c0       	rjmp	.+16     	; 0x270 <__vector_8+0x42>
+ 180:	b2 9b       	sbis	0x16, 2	; 22
+ 182:	0a c0       	rjmp	.+20     	; 0x198 <__vector_8+0x3e>
 	{
-		if (done < 38) done++;
- 260:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 264:	86 32       	cpi	r24, 0x26	; 38
- 266:	b8 f4       	brcc	.+46     	; 0x296 <__vector_8+0x68>
- 268:	8f 5f       	subi	r24, 0xFF	; 255
- 26a:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
- 26e:	13 c0       	rjmp	.+38     	; 0x296 <__vector_8+0x68>
+		if (lightTimes < 4) lightTimes++;
+ 184:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 188:	84 30       	cpi	r24, 0x04	; 4
+ 18a:	b0 f4       	brcc	.+44     	; 0x1b8 <__vector_8+0x5e>
+ 18c:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 190:	8f 5f       	subi	r24, 0xFF	; 255
+ 192:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 196:	10 c0       	rjmp	.+32     	; 0x1b8 <__vector_8+0x5e>
 	}
-	else if ((done >= 38) && (!OCR0A))
- 270:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 274:	86 32       	cpi	r24, 0x26	; 38
- 276:	78 f0       	brcs	.+30     	; 0x296 <__vector_8+0x68>
- 278:	86 b7       	in	r24, 0x36	; 54
- 27a:	81 11       	cpse	r24, r1
- 27c:	0c c0       	rjmp	.+24     	; 0x296 <__vector_8+0x68>
+	else if (lightTimes >= 4)
+ 198:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 19c:	84 30       	cpi	r24, 0x04	; 4
+ 19e:	60 f0       	brcs	.+24     	; 0x1b8 <__vector_8+0x5e>
 	{
-		done = 0;
- 27e:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
-		rampUP();
- 282:	57 df       	rcall	.-338    	; 0x132 <_Z6rampUPv>
-		secSleep = 110;
- 284:	8e e6       	ldi	r24, 0x6E	; 110
- 286:	90 e0       	ldi	r25, 0x00	; 0
- 288:	90 93 68 00 	sts	0x0068, r25	; 0x800068 <secSleep+0x1>
- 28c:	80 93 67 00 	sts	0x0067, r24	; 0x800067 <secSleep>
-		GIMSK |= 1 << INT0;			//Enable external interrupt looking for movement
- 290:	8b b7       	in	r24, 0x3b	; 59
- 292:	80 64       	ori	r24, 0x40	; 64
- 294:	8b bf       	out	0x3b, r24	; 59
+		lightTimes = 0;
+ 1a0:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+		secSleep = 45;
+ 1a4:	8d e2       	ldi	r24, 0x2D	; 45
+ 1a6:	90 e0       	ldi	r25, 0x00	; 0
+ 1a8:	90 93 64 00 	sts	0x0064, r25	; 0x800064 <secSleep+0x1>
+ 1ac:	80 93 63 00 	sts	0x0063, r24	; 0x800063 <secSleep>
+	sleep();
+}
+
+inline void seINT0()
+{
+	GIFR = 0;
+ 1b0:	1a be       	out	0x3a, r1	; 58
+	GIMSK |= 1 << INT0;			//Enable external interrupt INT0 to look for movement of tilt sensor
+ 1b2:	8b b7       	in	r24, 0x3b	; 59
+ 1b4:	80 64       	ori	r24, 0x40	; 64
+ 1b6:	8b bf       	out	0x3b, r24	; 59
+	{
+		lightTimes = 0;
+		secSleep = 45;
+		seINT0();
 	}
 }
- 296:	ff 91       	pop	r31
- 298:	ef 91       	pop	r30
- 29a:	bf 91       	pop	r27
- 29c:	af 91       	pop	r26
- 29e:	9f 91       	pop	r25
- 2a0:	8f 91       	pop	r24
- 2a2:	7f 91       	pop	r23
- 2a4:	6f 91       	pop	r22
- 2a6:	5f 91       	pop	r21
- 2a8:	4f 91       	pop	r20
- 2aa:	3f 91       	pop	r19
- 2ac:	2f 91       	pop	r18
- 2ae:	0f 90       	pop	r0
- 2b0:	0f be       	out	0x3f, r0	; 63
- 2b2:	0f 90       	pop	r0
- 2b4:	1f 90       	pop	r1
- 2b6:	18 95       	reti
+ 1b8:	9f 91       	pop	r25
+ 1ba:	8f 91       	pop	r24
+ 1bc:	0f 90       	pop	r0
+ 1be:	0f be       	out	0x3f, r0	; 63
+ 1c0:	0f 90       	pop	r0
+ 1c2:	1f 90       	pop	r1
+ 1c4:	18 95       	reti
 
-000002b8 <__vector_1>:
+000001c6 <__vector_1>:
 
 ISR (INT0_vect) //External interrupt used to wake from sleep
 {
- 2b8:	1f 92       	push	r1
- 2ba:	0f 92       	push	r0
- 2bc:	0f b6       	in	r0, 0x3f	; 63
- 2be:	0f 92       	push	r0
- 2c0:	11 24       	eor	r1, r1
- 2c2:	8f 93       	push	r24
-	GIMSK &= ~(1 << INT0);		//Disable external interrupt
- 2c4:	8b b7       	in	r24, 0x3b	; 59
- 2c6:	8f 7b       	andi	r24, 0xBF	; 191
- 2c8:	8b bf       	out	0x3b, r24	; 59
-	secSleep = 0;
- 2ca:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <secSleep+0x1>
- 2ce:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <secSleep>
+ 1c6:	1f 92       	push	r1
+ 1c8:	0f 92       	push	r0
+ 1ca:	0f b6       	in	r0, 0x3f	; 63
+ 1cc:	0f 92       	push	r0
+ 1ce:	11 24       	eor	r1, r1
+ 1d0:	8f 93       	push	r24
+	GIMSK |= 1 << INT0;			//Enable external interrupt INT0 to look for movement of tilt sensor
 }
- 2d2:	8f 91       	pop	r24
- 2d4:	0f 90       	pop	r0
- 2d6:	0f be       	out	0x3f, r0	; 63
- 2d8:	0f 90       	pop	r0
- 2da:	1f 90       	pop	r1
- 2dc:	18 95       	reti
 
-000002de <_exit>:
- 2de:	f8 94       	cli
+inline void clINT0()
+{
+	GIMSK &= ~(1 << INT0);		//Disable external interrupt INT0
+ 1d2:	8b b7       	in	r24, 0x3b	; 59
+ 1d4:	8f 7b       	andi	r24, 0xBF	; 191
+ 1d6:	8b bf       	out	0x3b, r24	; 59
+}
 
-000002e0 <__stop_program>:
- 2e0:	ff cf       	rjmp	.-2      	; 0x2e0 <__stop_program>
+ISR (INT0_vect) //External interrupt used to wake from sleep
+{
+	clINT0();
+	secSleep = 0;
+ 1d8:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <secSleep+0x1>
+ 1dc:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <secSleep>
+}
+ 1e0:	8f 91       	pop	r24
+ 1e2:	0f 90       	pop	r0
+ 1e4:	0f be       	out	0x3f, r0	; 63
+ 1e6:	0f 90       	pop	r0
+ 1e8:	1f 90       	pop	r1
+ 1ea:	18 95       	reti
+
+000001ec <_exit>:
+ 1ec:	f8 94       	cli
+
+000001ee <__stop_program>:
+ 1ee:	ff cf       	rjmp	.-2      	; 0x1ee <__stop_program>

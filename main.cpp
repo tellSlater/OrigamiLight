@@ -18,9 +18,7 @@
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 
-volatile uint8_t flips = 0;
 volatile uint16_t secSleep = 0;
-volatile bool wdtSleep = true;
 
 void inline setup()
 {
@@ -33,46 +31,16 @@ void inline setup()
 	
 	TCCR0A |= (1 << COM0A1) | (1 << WGM01) | (1 << WGM00);			//PWM
 	TCCR0B |= 1 << CS02;											//PWM
+	OCR0A = 0x00;
 	TIMSK0 |= 1 << TOIE0;											//Timer0 overflow interrupt
 	MCUCR |= (1 << SM1) | (1 << SE);								//Sleep mode selection
-	OCR0A = 0x00;
+	//MCUCR |= (1 << ISC00);											//INT0 interrupt type
 	
 	MCUSR = 0;														//Watchdog settings
 	WDTCR = (1<<WDCE)|(1<<WDE);
 	WDTCR = (1<<WDTIE) | (1<<WDP3) | (1<<WDP0);
 	
 	sei();
-}
-
-bool sensorFlipped()												//Gets a new sensor sample and checks if it is flipped through rolling mean
-{
-	static uint8_t sensorIns = 0x00;
-	static uint8_t i = 0;
-	static bool sensorPos = 1;
-	uint8_t sum = 0;
-	
-	if (PINB & (1 << PINB1))
-	{
-		sensorIns |= 1 << i;
-	}
-	else
-	{
-		sensorIns &= ~(1 << i);
-	}
-	i < 7? i++ : i=0;
-	
-	for (uint8_t j=0; j<8; ++j)
-	{
-		sum += (sensorIns >> j) & 0x01;
-	}
-	
-	if ((sensorPos && sum<3) || (!sensorPos && sum>6))
-	{
-		sensorPos = !sensorPos;
-		return true;
-	}
-	else
-		return false;
 }
 
 void sleep()
@@ -103,29 +71,32 @@ void rampDOWN()
 	sleep();
 }
 
+inline void seINT0()
+{
+	GIFR = 0;
+	GIMSK |= 1 << INT0;			//Enable external interrupt INT0 to look for movement of tilt sensor
+}
+
+inline void clINT0()
+{
+	GIMSK &= ~(1 << INT0);		//Disable external interrupt INT0
+}
 
 int main(void)
 {
-	
 	setup();
 	sei();
+	sleep();
     while (1)
     {
-	    _delay_ms(3);
-		flips += sensorFlipped();
-		if (flips > 6)
+		if (secSleep <= 60) rampUP();
+		if (secSleep > 5)
 		{
-			flips = 0;
-			secSleep = 0;
-			OCR0A ? rampDOWN() : rampUP();
+			seINT0();
 		}
-		if (secSleep > 120)
+		if (secSleep > 60)
 		{
 			rampDOWN();
-		}
-		if (wdtSleep && (!OCR0A))
-		{
-			wdtSleep = false;
 			sleep();
 		}
     }
@@ -133,37 +104,39 @@ int main(void)
 
 ISR (TIM0_OVF_vect) //Timer 0 overflow interrupt used for all the timing needs
 {
-	static uint8_t smallTimer = 0;
+	static uint8_t smallTimer = 0; 
 	smallTimer++;
-	if (smallTimer > 122)
+	if (smallTimer > 122)	//This if is entered once every second
 	{
 		smallTimer = 0;
 		secSleep++;
 		//DDRB ^= 1 << PINB0; //Debugging
-		if (flips > 0) flips --;
 	}
 }
 
 ISR (WDT_vect) //WDT interrupt to wake from sleep and check brightness once every 8sec
 {
-	static uint8_t done = 38;
+	volatile static uint8_t lightTimes = 4; //How many times light has been detected
+	
 	WDTCR |= (1<<WDTIE);
-	wdtSleep = true;
+	
+	if (!OCR0A) secSleep = 100;
+	else return;
+	
 	if (PINB & (1 << PINB2))
 	{
-		if (done < 38) done++;
+		if (lightTimes < 4) lightTimes++;
 	}
-	else if ((done >= 38) && (!OCR0A))
+	else if (lightTimes >= 4)
 	{
-		done = 0;
-		rampUP();
-		secSleep = 105;
-		GIMSK |= 1 << INT0;			//Enable external interrupt looking for movement
+		lightTimes = 0;
+		secSleep = 45;
+		seINT0();
 	}
 }
 
 ISR (INT0_vect) //External interrupt used to wake from sleep
 {
-	GIMSK &= ~(1 << INT0);		//Disable external interrupt
+	clINT0();
 	secSleep = 0;
 }
