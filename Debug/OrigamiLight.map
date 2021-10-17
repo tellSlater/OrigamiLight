@@ -191,7 +191,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x1f0
+.text           0x00000000      0x1c6
  *(.vectors)
  .vectors       0x00000000       0x14 G:/program files/AtmelStudio/7.0/Packs/atmel/ATtiny_DFP/1.3.229/gcc/dev/attiny13a/avr25/tiny-stack/crtattiny13a.o
                 0x00000000                __vector_default
@@ -250,43 +250,43 @@ END GROUP
  *(.init9)
  *(.text)
  .text          0x00000046        0x2 G:/program files/AtmelStudio/7.0/Packs/atmel/ATtiny_DFP/1.3.229/gcc/dev/attiny13a/avr25/tiny-stack/crtattiny13a.o
+                0x00000046                __bad_interrupt
                 0x00000046                __vector_6
                 0x00000046                __vector_7
                 0x00000046                __vector_5
                 0x00000046                __vector_4
                 0x00000046                __vector_9
-                0x00000046                __vector_2
-                0x00000046                __bad_interrupt
+                0x00000046                __vector_1
                 0x00000048                . = ALIGN (0x2)
  *(.text.*)
  .text._Z5setupv
-                0x00000048       0x32 main.o
+                0x00000048       0x34 main.o
                 0x00000048                _Z5setupv
- .text._Z5sleepv
-                0x0000007a       0x1e main.o
-                0x0000007a                _Z5sleepv
  .text._Z6rampUPv
-                0x00000098       0x22 main.o
-                0x00000098                _Z6rampUPv
+                0x0000007c       0x22 main.o
+                0x0000007c                _Z6rampUPv
  .text._Z8rampDOWNv
-                0x000000ba       0x24 main.o
-                0x000000ba                _Z8rampDOWNv
- .text.main     0x000000de       0x3a main.o
-                0x000000de                main
+                0x0000009e       0x22 main.o
+                0x0000009e                _Z8rampDOWNv
+ .text._Z5sleepv
+                0x000000c0       0x20 main.o
+                0x000000c0                _Z5sleepv
+ .text.main     0x000000e0       0x2a main.o
+                0x000000e0                main
  .text.__vector_3
-                0x00000118       0x42 main.o
-                0x00000118                __vector_3
+                0x0000010a       0x36 main.o
+                0x0000010a                __vector_3
  .text.__vector_8
-                0x0000015a       0x6c main.o
-                0x0000015a                __vector_8
- .text.__vector_1
-                0x000001c6       0x26 main.o
-                0x000001c6                __vector_1
-                0x000001ec                . = ALIGN (0x2)
+                0x00000140       0x60 main.o
+                0x00000140                __vector_8
+ .text.__vector_2
+                0x000001a0       0x22 main.o
+                0x000001a0                __vector_2
+                0x000001c2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000001ec        0x0 g:/program files/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25/tiny-stack\libgcc.a(_exit.o)
-                0x000001ec                _exit
-                0x000001ec                exit
+ .fini9         0x000001c2        0x0 g:/program files/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25/tiny-stack\libgcc.a(_exit.o)
+                0x000001c2                _exit
+                0x000001c2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -305,43 +305,43 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000001ec        0x4 g:/program files/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25/tiny-stack\libgcc.a(_exit.o)
+ .fini0         0x000001c2        0x4 g:/program files/atmelstudio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr25/tiny-stack\libgcc.a(_exit.o)
  *(.fini0)
-                0x000001f0                _etext = .
+                0x000001c6                _etext = .
 
-.data           0x00800060        0x2 load address 0x000001f0
+.data           0x00800060        0x2 load address 0x000001c6
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
  .data._ZZ10__vector_8E10lightTimes
                 0x00800060        0x1 main.o
+ .data.secSleep
+                0x00800061        0x1 main.o
+                0x00800061                secSleep
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.r*)
                 0x00800062                . = ALIGN (0x2)
- *fill*         0x00800061        0x1 
                 0x00800062                _edata = .
                 0x00800062                PROVIDE (__data_end, .)
 
-.bss            0x00800062        0x3
+.bss            0x00800062        0x1
                 0x00800062                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss._ZZ10__vector_3E10smallTimer
                 0x00800062        0x1 main.o
- .bss.secSleep  0x00800063        0x2 main.o
-                0x00800063                secSleep
  *(COMMON)
-                0x00800065                PROVIDE (__bss_end, .)
-                0x000001f0                __data_load_start = LOADADDR (.data)
-                0x000001f2                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800063                PROVIDE (__bss_end, .)
+                0x000001c6                __data_load_start = LOADADDR (.data)
+                0x000001c8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800065        0x0
+.noinit         0x00800063        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800065                _end = .
+                0x00800063                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -414,34 +414,34 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x5b7
+.debug_info     0x00000000      0x5ae
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x2dc G:/program files/AtmelStudio/7.0/Packs/atmel/ATtiny_DFP/1.3.229/gcc/dev/attiny13a/avr25/tiny-stack/crtattiny13a.o
- .debug_info    0x000002dc      0x2db main.o
+ .debug_info    0x000002dc      0x2d2 main.o
 
-.debug_abbrev   0x00000000      0x430
+.debug_abbrev   0x00000000      0x41f
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x2b6 G:/program files/AtmelStudio/7.0/Packs/atmel/ATtiny_DFP/1.3.229/gcc/dev/attiny13a/avr25/tiny-stack/crtattiny13a.o
- .debug_abbrev  0x000002b6      0x17a main.o
+ .debug_abbrev  0x000002b6      0x169 main.o
 
-.debug_line     0x00000000      0x3bd
+.debug_line     0x00000000      0x3b7
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000       0xca G:/program files/AtmelStudio/7.0/Packs/atmel/ATtiny_DFP/1.3.229/gcc/dev/attiny13a/avr25/tiny-stack/crtattiny13a.o
- .debug_line    0x000000ca      0x2f3 main.o
+ .debug_line    0x000000ca      0x2ed main.o
 
-.debug_frame    0x00000000       0xcc
+.debug_frame    0x00000000       0xc4
  *(.debug_frame)
- .debug_frame   0x00000000       0xcc main.o
+ .debug_frame   0x00000000       0xc4 main.o
 
-.debug_str      0x00000000      0x388
+.debug_str      0x00000000      0x37b
  *(.debug_str)
  .debug_str     0x00000000      0x100 G:/program files/AtmelStudio/7.0/Packs/atmel/ATtiny_DFP/1.3.229/gcc/dev/attiny13a/avr25/tiny-stack/crtattiny13a.o
- .debug_str     0x00000100      0x288 main.o
-                                0x2bc (size before relaxing)
+ .debug_str     0x00000100      0x27b main.o
+                                0x2af (size before relaxing)
 
-.debug_loc      0x00000000      0x15c
+.debug_loc      0x00000000      0x142
  *(.debug_loc)
- .debug_loc     0x00000000      0x15c main.o
+ .debug_loc     0x00000000      0x142 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
