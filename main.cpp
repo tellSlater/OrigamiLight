@@ -2,8 +2,8 @@
  * OrigamiLight.cpp
  *
  * Created: 10/10/2021 16:57:19
- * Author : Windfish (Visit windfish.ddns.net)
- * 
+ * Author : Windfish
+ * Visit windfish.ddns.net
  *
  * Chip used: ATTiny13A
  * The internal oscillator and no prescaling is used for this project.
@@ -30,7 +30,7 @@
 #include <avr/sleep.h>
 #include <avr/wdt.h>
 
-#define darknessONtime  30			//This defines how much time the light will stay ON if darkness is detected. Must always be less than the tiltONtime (dedicated to my white wolf)
+#define darknessONtime  15			//This defines how much time the light will stay ON if darkness is detected. Must always be less than the tiltONtime (dedicated to my white wolf)
 #define tiltONtime  60				//This defines how much time the light will stay ON if the tilt sensor triggers.
 
 volatile uint8_t secSleep = 100;	//This variable is incremented once every second when the light is ON. When it reaches a threshold, the light goes to sleep
@@ -141,14 +141,14 @@ ISR (WDT_vect)									//WDT interrupt to wake from sleep and check brightness o
 	if (!OCR0A) secSleep = 100;					//If the light is off, the secSleep is assigned a value greater than the threshold (in this case the threshold is chosen to be 60 in main)
 	else return;								//If the light is on, no commands are executed and the routine returns
 	
-	if (PINB & (1 << PINB2))					//If the photoresistor detects light
+	if (PINB & (1 << PINB2))					//If there photoresistor detects light
 	{
 		if (lightTimes < 10) lightTimes++;		//The lightTimes is incremented until it reaches 10
 	}
-	else if (lightTimes >= 10)					//If the photoresistor does not detect light and there have already been 10 instances of light
+	else if (lightTimes >= 10)					//If there photoresistor detects light and there have already been 10 instances of light
 	{
-		lightTimes = 0;							//The lightTimes is set to 0 so that the light will not keep turning on when in the dark
-		secSleep = tiltONtime - darknessONtime;	//secSleep is set so that the light will turn on and sleep after 30"
+		lightTimes = 0;							//The lightTimes is set to 0 so that the light will not keep turning when in the dark
+		secSleep = tiltONtime - darknessONtime;	//secSleep is set so that the light will sleep after 15"
 		sePCI();								//Pin change interrupt is activated so that if someone picks up the origami, it will be detected by the tilt sensor and the on-time will increase
 	}
 }
