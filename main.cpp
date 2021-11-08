@@ -11,8 +11,8 @@
  *
  *								__________
  * PIN1 - Not connected		   _|	 O    |_		PIN8 - VCC
- * PIN2	- Not connected		   _|		  |_		PIN7 - Light sensor
- * PIN3	- Not connected		   _|ATTiny13A|_		PIN6 - Tilt sensor
+ * PIN2	- Virtual GND		   _|		  |_		PIN7 - Light sensor
+ * PIN3	- Battery sensing	   _|ATTiny13A|_		PIN6 - Tilt/vibration sensor
  * PIN4	- Ground			   _|		  |_		PIN5 - LEDs (PWM)
  *							    |_________|
  */ 
