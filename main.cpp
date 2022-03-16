@@ -9,7 +9,7 @@
  * The internal oscillator and no prescaling is used for this project.
  * The state of the chip's fuses should be: (E:FF, H:FF, L:7A).
  *
- *								__________
+ *								 _________
  * PIN1 - Not connected		   _|	 O    |_		PIN8 - VCC
  * PIN2	- Virtual GND		   _|		  |_		PIN7 - Light sensor
  * PIN3	- Battery sensing	   _|ATTiny13A|_		PIN6 - Tilt/vibration sensor
@@ -127,7 +127,7 @@ ISR (TIM0_OVF_vect)							//Timer 0 overflow interrupt used for all the timing n
 	{
 		smallTimer = 0;
 		secSleep++;							//secSleep is incremented once a second when the chip is not sleeping
-		//DDRB ^= 1 << PINB0;				//Debugging
+		//DDRB ^= 1 << PINB0;	//Debugging
 	}
 }
 
@@ -136,7 +136,7 @@ ISR (WDT_vect)									//WDT interrupt to wake from sleep and check brightness o
 	volatile static uint8_t lightTimes = 10;	//How many times light has been detected
 	
 	WDTCR |= (1<<WDTIE);						//The watchdog timer interrupt enable bit should be written to 1 every time the watchdog ISR executes. If a watchdog timer overflow occurs and this bit is not set, the chip will reset
-	//DDRB ^= 1 << PINB0; //Debugging
+	//DDRB ^= 1 << PINB0;	//Debugging
 	
 	if (!OCR0A) secSleep = 100;					//If the light is off, the secSleep is assigned a value greater than the threshold (in this case the threshold is chosen to be 60 in main)
 	else return;								//If the light is on, no commands are executed and the routine returns
